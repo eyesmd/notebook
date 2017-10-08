@@ -1,0 +1,19 @@
+Segment Tree con mínimo usado para encontrar la primera ocurrencia de un elemento que cumpla con cierto predicado
+
+Salto de sparse table a segment tree es borrar los elementos que no son múltiple de la potencias de dos del nivel que le corresponde
+Eg, en el nivel 1 tecnicamente solo necesito las posiciones pares, en el nivel 2 tecnicamente sólo necesito las posiciones múltiplos de 4; pasa que en la sparse table hay mucha info repetida
+
+IO Optimizations
+ - 'endl' fuerza un flush de stream, lo cual lleva su tiempo, con lo cual es más conveniente utilizar '/n'
+
+std::find is O(n) even if used on sets, std::set::find is what it's O(log n)
+
+There is one important difference between map::find() and map::operator []. While map::find() will never change the contents of map, operator [] will create an element if it does not exist. In some cases this could be very convenient, but it’s definitly a bad idea to use operator [] many times in a loop, when you do not want to add new elements. That’s why operator [] may not be used if map is passed as a const reference parameter to some function:
+
+Muchas queries de camino mínimo
+ - En un grafo comun no queda mas que hacer BFS múltiples veces
+ - En un arbol puede hacerse en O(n log n)
+
+En arbol se puede usar DFS para calcular camino mínimo (porque no hay ciclos)
+
+int_mod(a, b) = (a mod b + b) % b; 

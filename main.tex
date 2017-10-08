@@ -1,0 +1,177 @@
+% --------------------------------------------------
+% PREAMBLE -----------------------------------------
+% --------------------------------------------------
+\documentclass{article}
+
+% DOCUMENT
+    \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+\usepackage[landscape,twocolumn]{geometry} % Page layout
+    \geometry{
+        paper=a4paper,
+        tmargin=1.5cm,
+        bmargin=1.5cm,
+        lmargin=1cm,
+        rmargin=1cm,
+        headheight = 0pt,
+        headsep = 25pt,
+        footskip = 25pt
+    }
+\usepackage{fancyhdr} % Headers
+    % * 'fancyhead' and 'fancyfoot' writes to all fielsds
+    % * 'leftmark' and 'rightmark' have the info of two top-level sections
+    % * 'sectionmark', I don't know
+    \pagestyle{fancy}
+    \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+    \fancyhead{} 
+    \fancyfoot{}
+    \rhead{\nouppercase{\leftmark}}
+    \cfoot{\thepage / \pageref*{LastPage}}
+
+% ENCODING
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% MATH
+\usepackage{amsmath} % Has everything
+\usepackage{amssymb} % Math symbols
+\usepackage{dsfont} % Domain font
+\usepackage{amsthm} % Theorems
+    \newtheorem*{teorema}{Teorema}
+    \newtheorem*{proposicion}{Proposición}
+    \newtheorem*{lema}{Lema}
+    \newtheorem*{corolario}{Corolario}
+
+% ALGORITHMS
+\usepackage{algorithm} % Algorithm floats
+    \floatname{algorithm}{Algoritmo}
+\usepackage{algorithmicx} % Macro definitions for algorithm typesetting
+\usepackage{algpseudocode} % Pseudocode package built with algorithmicx
+    \algrenewcommand\algorithmicrequire{\textbf{Requiere}}
+    \algrenewcommand\algorithmicensure{\textbf{Asegura}}
+
+% MISC
+\usepackage{graphicx} % Images
+\usepackage{lastpage} % Reference to last page
+\usepackage{enumitem} % List control
+\usepackage[draft]{todonotes} % Todo's
+\usepackage{hyperref} % Hyperlinks
+    \hypersetup{
+        colorlinks = true,
+        urlcolor = blue,
+        linkcolor = red,
+        citecolor = red
+    }
+\usepackage{lipsum} % Lorem Ipsum
+\usepackage{tabularx} % Table control 
+\usepackage{listings} % Source Code
+    \lstset{
+        language=C++,
+        basicstyle=\ttfamily,
+        basewidth  = {.45em,0.45em},
+        backgroundcolor=\color[rgb]{0.9,0.9,0.9},
+        keywordstyle=\color[rgb]{0,0,0.6},
+        morekeywords={vector,pair,stack,tuple,queue,map,unordered_map,set,list},
+        numbers=left,
+        numberstyle=\tiny,
+        xleftmargin=4pt,
+        xrightmargin=4pt,
+        frame=tlbr,
+        framesep=4pt,
+        framerule=0pt,
+    }
+    \newcommand{\cppfile}[2][]{
+        \lstinputlisting[linerange={#1}]{#2}
+    }
+
+% FONTS
+\renewcommand*\rmdefault{ptm} % Times
+
+
+
+% ---------------------------------------------------
+% MAIN ----------------------------------------------
+% ---------------------------------------------------
+
+\begin{document}
+
+\tableofcontents
+
+
+\pagebreak
+
+
+\section{STL}
+
+{\centering \subsection*{Input/Forward Iterators (Generic)}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{min\_element}(first, last, [comp]) & returns iterator to the (first) minimum \\
+    \textbf{accumulate}(first, last, init, [bp]) & returns the result of sequentially applying \textit{binary} operations starting from init \\
+    \textbf{count}(first, last, val) & returns the repetitions of val (using $==$)
+\end{tabularx}
+
+{\centering \subsection*{Random Access Iterators (Arrays)}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{lower\_bound}(first, last, val, [comp]) & returns iterator to the first element greater or equal than val (higher\_bound is strict) \footnote{If the iterator is random-access, the operation on average is logarithmic, otherwise it is linear} \\
+    \textbf{sort}(first, last, [comp$<$]) & sorts elements in ascending order in $O(n \, log \, n)$
+\end{tabularx}
+
+{\centering \subsection*{Vectors}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{assign}(first, last) & fills the vector using the range given \\
+\end{tabularx}
+
+{\centering \subsection*{Sets and Maps}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{lower\_bound}(val) & returns iterator to the first element greater or equal than val (higher\_bound is strict)
+\end{tabularx}
+
+\todo[inline]{generic: insert(need to specify pos in vectors), erase, clear, swap. vectors have push\_back, pop\_back. Queues have push, pop, back, front. Stacks have push, pop, top. vectors have 'front' and 'back'}
+
+\todo[inline]{partition, set\_union, set\_difference, set\_intersection, search, nth\_element(intro select, qsort, median of medians magic), is\_permutation}
+
+\pagebreak
+
+
+\section{Yapas}
+
+\subsection*{Funciones Grandes}
+
+\newcolumntype{Y}{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}X}
+\begin{tabularx}{0.33\textwidth}{YYYYYYYY}
+                      & $\mathbf{5}$ & $\mathbf{10}$ & $\mathbf{15}$ & $\mathbf{20}$ & $\mathbf{25}$ & $\mathbf{30}$ \\
+     $\mathbf{2^n}$            & $32$  & $10^3$    & $3*10^4$ & $10^6$   & $3*10^7$ & $10^9$ \\
+     $\mathbf{3^n}$            & $243$ & $5*10^4$  & $10^7$   & $3*10^9$ & $...$    & $...$ \\
+     $\mathbf{\binom{n}{n/2}}$ & $10$  & $252$     & $5*10^4$ & $10^5$   & $10^6$   & $10^8$ \\
+     $\mathbf{n!}$             & $120$ & $10^{12}$ & $...$    & $...$    & $...$    & $...$
+\end{tabularx}
+
+\subsection*{Límites}
+\begin{tabular}{ccc}
+    INT\_MAX $= 2e9$ & LLONG\_MAX $= 9e18$ & DBL\_MAX $= 1e37$
+\end{tabular}
+
+\subsection*{Lambdas}
+\begin{lstlisting}
+auto f = [] (int a, int b) { return a * b; };
+std::accumulate(v.begin(), v.end(), 1, f);
+\end{lstlisting}
+
+\subsection*{Repetidos}
+\begin{lstlisting}
+set<int> s( vec.begin(), vec.end() );
+vec.assign( s.begin(), s.end() );
+\end{lstlisting}
+
+\pagebreak
+
+
+\input{structures/structures.tex}
+\pagebreak
+\input{strings/strings.tex}
+\pagebreak
+\input{math/math.tex}
+\pagebreak
+\input{general/general.tex}
+\pagebreak
+
+\end{document}
