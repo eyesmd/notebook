@@ -4,18 +4,20 @@
 \documentclass{article}
 
 % DOCUMENT
-    \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+	\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+	\setlength{\columnsep}{0.9cm}
 \usepackage[landscape,twocolumn]{geometry} % Page layout
     \geometry{
         paper=a4paper,
-        tmargin=1.5cm,
-        bmargin=1.5cm,
-        lmargin=1cm,
-        rmargin=1cm,
+        tmargin=1.65cm,
+        bmargin=1.65cm,
+        lmargin=0.9cm,
+        rmargin=0.9cm,
         headheight = 0pt,
-        headsep = 25pt,
-        footskip = 25pt
+        headsep = 30pt,
+        footskip = 30pt
     }
+    
 \usepackage{fancyhdr} % Headers
     % * 'fancyhead' and 'fancyfoot' writes to all fielsds
     % * 'leftmark' and 'rightmark' have the info of two top-level sections
@@ -97,37 +99,7 @@
 
 \pagebreak
 
-
-\section{STL}
-
-{\centering \subsection*{Input/Forward Iterators (Generic)}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{min\_element}(first, last, [comp]) & returns iterator to the (first) minimum \\
-    \textbf{accumulate}(first, last, init, [bp]) & returns the result of sequentially applying \textit{binary} operations starting from init \\
-    \textbf{count}(first, last, val) & returns the repetitions of val (using $==$)
-\end{tabularx}
-
-{\centering \subsection*{Random Access Iterators (Arrays)}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{lower\_bound}(first, last, val, [comp]) & returns iterator to the first element greater or equal than val (higher\_bound is strict) \footnote{If the iterator is random-access, the operation on average is logarithmic, otherwise it is linear} \\
-    \textbf{sort}(first, last, [comp$<$]) & sorts elements in ascending order in $O(n \, log \, n)$
-\end{tabularx}
-
-{\centering \subsection*{Vectors}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{assign}(first, last) & fills the vector using the range given \\
-\end{tabularx}
-
-{\centering \subsection*{Sets and Maps}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{lower\_bound}(val) & returns iterator to the first element greater or equal than val (higher\_bound is strict)
-\end{tabularx}
-
-\todo[inline]{generic: insert(need to specify pos in vectors), erase, clear, swap. vectors have push\_back, pop\_back. Queues have push, pop, back, front. Stacks have push, pop, top. vectors have 'front' and 'back'}
-
-\todo[inline]{partition, set\_union, set\_difference, set\_intersection, search, nth\_element(intro select, qsort, median of medians magic), is\_permutation}
-
-
+\input{c++/c++.tex}
 \pagebreak
 
 
@@ -148,18 +120,6 @@
 \begin{tabular}{ccc}
     INT\_MAX $= 2e9$ & LLONG\_MAX $= 9e18$ & DBL\_MAX $= 1e37$
 \end{tabular}
-
-\subsection*{Lambdas}
-\begin{lstlisting}
-auto f = [] (int a, int b) { return a * b; };
-std::accumulate(v.begin(), v.end(), 1, f);
-\end{lstlisting}
-
-\subsection*{Repetidos}
-\begin{lstlisting}
-set<int> s( vec.begin(), vec.end() );
-vec.assign( s.begin(), s.end() );
-\end{lstlisting}
 
 
 \pagebreak

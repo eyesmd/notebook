@@ -1,0 +1,58 @@
+
+\pagebreak
+
+\section{C++}
+
+\subsection{STL}
+
+{\centering \subsection*{Input/Forward Iterators (Generic)}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{min\_element}(first, last, [comp]) & returns iterator to the (first) minimum \\
+    \textbf{accumulate}(first, last, init, [bp]) & returns the result of sequentially applying \textit{binary} operations starting from init \\
+    \textbf{count}(first, last, val) & returns the repetitions of val (using $==$)
+\end{tabularx}
+
+{\centering \subsection*{Random Access Iterators (Arrays)}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{lower\_bound}(first, last, val, [comp]) & returns iterator to the first element greater or equal than val (higher\_bound is strict) \footnote{If the iterator is random-access, the operation on average is logarithmic, otherwise it is linear} \\
+    \textbf{sort}(first, last, [comp$<$]) & sorts elements in ascending order in $O(n \, log \, n)$
+\end{tabularx}
+
+{\centering \subsection*{Vectors}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{assign}(first, last) & fills the vector using the range given \\
+\end{tabularx}
+
+{\centering \subsection*{Sets and Maps}}
+\begin{tabularx}{\textwidth/2-20pt}{c X}
+    \textbf{lower\_bound}(val) & returns iterator to the first element greater or equal than val (higher\_bound is strict)
+\end{tabularx}
+
+\todo[inline]{generic: insert(need to specify pos in vectors), erase, clear, swap. vectors have push\_back, pop\_back. Queues have push, pop, back, front. Stacks have push, pop, top. vectors have 'front' and 'back'}
+
+\todo[inline]{partition, set\_union, set\_difference, set\_intersection, search, nth\_element(intro select, qsort, median of medians magic), is\_permutation}
+
+\pagebreak
+
+
+\subsection{Snippets}
+
+\subsubsection*{Lambdas}
+\begin{lstlisting}
+auto f = [] (int a, int b) { return a * b; };
+std::accumulate(v.begin(), v.end(), 1, f);
+\end{lstlisting}
+
+\subsubsection*{Repetidos}
+\begin{lstlisting}
+set<int> s( vec.begin(), vec.end() );
+vec.assign( s.begin(), s.end() );
+\end{lstlisting}
+
+
+\subsection{Tips}
+\begin{itemize}
+    \item std::find para sets es O(n), lo que es O(log n) es std::set::find
+    \item El operador [] para maps crea un elemento si no lo encuentra, mejor usar find
+    \item Módulo de negativos da negativo, ojo con eso
+\end{itemize}
