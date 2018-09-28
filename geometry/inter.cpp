@@ -1,5 +1,5 @@
 // Given lines in parametric form 'c + tv' and 'd + tw' this
-// function shields the values t1, t2 such that 'c + t1v = d + t2w'
+// function yields the values t1, t2 such that 'c + t1v = d + t2w'
 pair<double, double> scalar_intersection(pto c, pto v, pto d, pto w) {
     double ndet = v.x * w.y - v.y * w.x;
     if (abs(ndet) < EPS) {
