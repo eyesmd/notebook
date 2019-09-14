@@ -1,16 +1,38 @@
 \subsection{Bits}
 
-\subsubsection*{Operaciones}
+\subsubsection*{Operaciones básicas}
 
-\begin{tabularx}{\textwidth/2-20pt}{X X}
-	Conjunto con todos los elementos & \lstinline{int x = -1;} \\
+\begin{tabularx}{\textwidth/2-80pt}{X X}
+	Conjunto con $n$ elementos & \lstinline{int x = (1 << n) - 1;} \footnote{No utilizamos el más sencillo $-1$ porque al borrar todos los elementos no nos quedaría $0$.}\\
 	Pertenencia del $i$-esimo elemento & \lstinline{if (x & 1 << i)} \\
     Agregar $i$-esimo elemento & \lstinline{x |= 1 << i} \\
     Borrar $i$-esimo elemento & \lstinline{x &= ~(1 << i)} \\
-    Recorrer set de $n$ elementos & \lstinline{for (int x = 0; x < (1 << n); x++)} \\
+    Recorrer subconjuntos & \lstinline{for (int x = 0; x < (1 << n); x++)} \\
 \end{tabularx}
 
-% 
-%Recorrer todos los subsets (salvo vacio) & \lstinline{for ( int x = y; x > 0; x = ( y & (x-1) ) )} \\
+\subsubsection*{Operaciones de conjunto}
 
-\todo[inline]{¿Está bien hacer ops de bit con ints?}
+\begin{tabularx}{\textwidth/2-80pt}{X X}
+    Complemento & \lstinline{((1 << n) - 1) ^ x)} \\
+    Unión & \lstinline{x | y} \\
+    Intersección & \lstinline{x & y} \\
+    Diferencia & \lstinline{x & ~y} \\
+    Diferencia Simétrica & \lstinline{x ^ y} \\
+\end{tabularx}
+
+\subsubsection*{Truquitos}
+
+\begin{tabularx}{\textwidth/2-80pt}{X X}
+	Potencia de dos inmediata inferior & \lstinline{1 << (31 - __builtin_clz(n))} \\
+	Recorrer subconjuntos de subconjuntos en $O(n^3)$ (salvo vacio) & \lstinline{for (int x = y; x > 0; x = (y & (x-1)))} \\
+\end{tabularx}
+
+\subsubsection*{Notas}
+\begin{itemize}
+	\item Los operadores \& y | tienen menor precedencia que los operadores de comparación, con lo cual \lstinline{x & 3 == 1} se interpreta como \lstinline{x & (3 == 1)}. ¡Ojo con eso!
+	\item Los operadores de bits no están completamente definidos sobre enteros con signo. Para código portable y bien escrito, es mejor utilizar tipos sin signo. Dicho eso, en los jueces no explota nada si utilizamos ints. El único cuidado especial es realizar shifts sobre números negativos, por resultar en \textit{undefined behaviour}, que se puede evitar dejando en $0$ el bit más significativo.
+\end{itemize}
+
+
+
+\todo[inline]{¿Por qué está bien hacer ops de bit con ints?}
