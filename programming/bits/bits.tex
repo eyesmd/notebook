@@ -1,0 +1,16 @@
+\subsection{Bits}
+
+\subsubsection*{Operaciones}
+
+\begin{tabularx}{\textwidth/2-20pt}{X X}
+	Conjunto con todos los elementos & \lstinline{int x = -1;} \\
+	Pertenencia del $i$-esimo elemento & \lstinline{if (x & 1 << i)} \\
+    Agregar $i$-esimo elemento & \lstinline{x |= 1 << i} \\
+    Borrar $i$-esimo elemento & \lstinline{x &= ~(1 << i)} \\
+    Recorrer set de $n$ elementos & \lstinline{for (int x = 0; x < (1 << n); x++)} \\
+\end{tabularx}
+
+% 
+%Recorrer todos los subsets (salvo vacio) & \lstinline{for ( int x = y; x > 0; x = ( y & (x-1) ) )} \\
+
+\todo[inline]{¿Está bien hacer ops de bit con ints?}

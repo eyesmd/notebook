@@ -96,42 +96,37 @@
 
 \tableofcontents
 
-
 \pagebreak
 
-\input{c++/c++.tex}
+\section{Programación}
+\input{programming/c++/c++.tex}
+\pagebreak
+\input{programming/bits/bits.tex}
 \pagebreak
 
-
-\section{Yapas}
-
-\subsection*{Funciones Grandes}
-
-\newcolumntype{Y}{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}X}
-\begin{tabularx}{0.33\textwidth}{YYYYYYYY}
-                      & $\mathbf{5}$ & $\mathbf{10}$ & $\mathbf{15}$ & $\mathbf{20}$ & $\mathbf{25}$ & $\mathbf{30}$ \\
-     $\mathbf{2^n}$            & $32$  & $10^3$    & $3*10^4$ & $10^6$   & $3*10^7$ & $10^9$ \\
-     $\mathbf{3^n}$            & $243$ & $5*10^4$  & $10^7$   & $3*10^9$ & $...$    & $...$ \\
-     $\mathbf{\binom{n}{n/2}}$ & $10$  & $252$     & $5*10^4$ & $10^5$   & $10^6$   & $10^8$ \\
-     $\mathbf{n!}$             & $120$ & $10^{12}$ & $...$    & $...$    & $...$    & $...$
-\end{tabularx}
-
-\subsection*{Límites}
-\begin{tabular}{ccc}
-    INT\_MAX $= 2e9$ & LLONG\_MAX $= 9e18$ & DBL\_MAX $= 1e37$
-\end{tabular}
-
-
-\pagebreak
-
+\section{Estructuras de Datos}
 \input{structures/structures.tex}
 \pagebreak
+
+\section{Strings}
 \input{strings/strings.tex}
 \pagebreak
+
+\section{Geometria}
 \input{geometry/geometry.tex}
 \pagebreak
-\input{math/math.tex}
+
+\section{Matemática}
+\input{math/algebra/algebra.tex}
 \pagebreak
+\input{math/modular_sum/modular_sum.tex}
+\pagebreak
+\input{math/game_theory/game_theory.tex}
+\pagebreak
+%\input{math/primes/primes.tex}
+%\pagebreak
+
+\section{Miscelaneas}
 \input{general/general.tex}
 \pagebreak
 
