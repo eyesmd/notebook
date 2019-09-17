@@ -5,9 +5,10 @@
 \begin{tabularx}{\textwidth/2-80pt}{X X}
 	Conjunto con $n$ elementos & \lstinline{int x = (1 << n) - 1;} \footnote{No utilizamos el más sencillo $-1$ porque al borrar todos los elementos no nos quedaría $0$.}\\
 	Pertenencia del $i$-esimo elemento & \lstinline{if (x & 1 << i)} \\
+	Cardinal & \lstinline{__builtin_popcount(x)} \\
     Agregar $i$-esimo elemento & \lstinline{x |= 1 << i} \\
     Borrar $i$-esimo elemento & \lstinline{x &= ~(1 << i)} \\
-    Recorrer subconjuntos & \lstinline{for (int x = 0; x < (1 << n); x++)} \\
+    Recorrer subconjuntos & \lstinline{forn(x, 1 << n)} \\
 \end{tabularx}
 
 \subsubsection*{Operaciones de conjunto}
@@ -27,12 +28,9 @@
 	Recorrer subconjuntos de subconjuntos en $O(n^3)$ (salvo vacio) & \lstinline{for (int x = y; x > 0; x = (y & (x-1)))} \\
 \end{tabularx}
 
-\subsubsection*{Notas}
+\subsubsection*{Comentarios}
 \begin{itemize}
 	\item Los operadores \& y | tienen menor precedencia que los operadores de comparación, con lo cual \lstinline{x & 3 == 1} se interpreta como \lstinline{x & (3 == 1)}. ¡Ojo con eso!
+	\item Los operadores \textit{builtin} tienen versiones para \lstinline{long} y \lstinline{long long}, (\lstinline{__builtin_clzll(n)}) ¡Cuidado con pasarles el tipo incorrecto!
 	\item Los operadores de bits no están completamente definidos sobre enteros con signo. Para código portable y bien escrito, es mejor utilizar tipos sin signo. Dicho eso, en los jueces no explota nada si utilizamos ints. El único cuidado especial es realizar shifts sobre números negativos, por resultar en \textit{undefined behaviour}, que se puede evitar dejando en $0$ el bit más significativo.
 \end{itemize}
-
-
-
-\todo[inline]{¿Por qué está bien hacer ops de bit con ints?}
