@@ -32,13 +32,22 @@
 \pagebreak
 
 
-\subsection{Notes}
+\subsection{Misc}
 
-Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, si fallaría si le pasásemos un array de arrays).
+\subsubsection*{Permutaciones}
+\begin{lstlisting}
+vector<int> v;
+sort(v.begin(), v.end());
+do {
+    // code
+} while (next_permutation(v.begin(), v.end()));  #\amortizedoh{n!}#
+\end{lstlisting}
 
-¡Para usar un \textit{unordered\_set} hace falta implementar una función de hash para pares!
+Next permutation muta un container a la permutación inmediata superior. Devuelve true sii el mismo queda completamente ordenado.
 
-\subsection{Snippets}
+¡Observar que para obtener todas las permutaciones debemos ordenar el arreglo antes! Además, para que el cuerpo del ciclo corra al menos una vez con el vector ordenado, debemos poner la guarda al final (porque llegar al mismo es justamente la condición de corte).
+
+Cada llamado es lineal en peor caso, pero $O(1)$ amortizado si la utilizamos para obtener todas las permutaciones. Sin embargo, la constante es \textit{probablemente} alta, debido al orden en que asegura obtenerlas.
 
 \subsubsection*{Lambdas}
 \begin{lstlisting}
@@ -52,8 +61,12 @@ set<int> s( vec.begin(), vec.end() );
 vec.assign( s.begin(), s.end() );
 \end{lstlisting}
 
+\subsubsection*{Things}
 
-\subsection{Tips}
+Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, si fallaría si le pasásemos un array de arrays).
+
+¡Para usar un \textit{unordered\_set} hace falta implementar una función de hash para pares!
+
 \begin{itemize}
     \item std::find para sets es O(n), lo que es O(log n) es std::set::find
     \item El operador [] para maps crea un elemento si no lo encuentra, mejor usar find

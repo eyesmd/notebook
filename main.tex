@@ -80,6 +80,7 @@
         frame=tlbr,
         framesep=4pt,
         framerule=0pt,
+        escapechar=\#% char to escape out of listings and back to LaTeX
     }
     \newcommand{\cppfile}[2][]{
         \lstinputlisting[linerange={#1}]{#2}
@@ -87,6 +88,10 @@
 
 % FONTS
 \renewcommand*\rmdefault{ptm} % Times
+
+\newcommand*{\comment}[1]{\hfill\makebox[3.0cm][r]{#1}}%
+\newcommand*{\oh}[1]{\comment{$O(#1)$}}%
+\newcommand*{\amortizedoh}[1]{\comment{$amortized \,\, O(#1)$}}%
 
 
 
