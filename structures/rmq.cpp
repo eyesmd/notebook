@@ -1,14 +1,18 @@
-struct Rmq {
-    vector< vector<int> > st;
-    Rmq(vector<int>& src) {
-        st = vector< vector<int> >(floor(log2(sz(src))+1), vector<int>(sz(src)));
-        forn(i, sz(src)) st[0][i] = src[i];
-        forn(i, sz(st)-1) forn(j, sz(src)-(1<<i)) {
-            st[i+1][j] = min(st[i][j], st[i][j+(1<<i)]);
+struct SparseTable {
+    vector<vector<int>> t;
+    SparseTable(vector<int>& src) { // O(n log n)
+        int n = sz(src);
+        t.assign(1 + 31 - __builtin_clz(n), vector<int>(n));
+        forn(i, n) t[0][i] = src[i];
+        forn(i, sz(t)-1) forn(j, n-(1<<i)) {
+            t[i+1][j] = binary_op(t[i][j], t[i][j+(1<<i)]);
         }
     }
-    int query(int i, int j) {
-        int niv = floor(log2(j-i));
-        return min(st[niv][i], st[niv][j-(1<<niv)]);
+    int query(int l, int r) { // O(1) - interval [l, r)  
+        int niv = 31 - __builtin_clz(r-l);
+        return binary_op(t[niv][l], t[niv][r-(1<<niv)]);
+    }
+    int binary_op(int a, int b) {
+        return min(a, b);
     }
 };
