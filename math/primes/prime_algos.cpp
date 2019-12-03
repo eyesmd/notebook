@@ -4,24 +4,34 @@
 
 using namespace std;
 
-// Notes:
-// - Buscamos primos hasta 'sqrt(lim)', pues todo número compuesto debajo de lim
-// tiene al menos un divisor menor o igual a 'lim' (y por ende un primo divisor)
-// - Inner loop starts from i*i since we already know for earlier multiples m of
-// i we know that m = i*s with s < i, so we must have already visited it
-void criba(vector<bool>& is_prime, int lim){ // O(n log log n)
-    is_prime.clear();
-    is_prime.resize(lim, true);
-    is_prime[0] = false;
-    is_prime[1] = false;
-    int cota = sqrt(lim);
-    for (int i = 2; i <= cota; i++) {
-        if (is_prime[i] == true) {
-            for (int j = i*i; j < lim; j+=i) {
-                is_prime[j] = false;
-            }
-        }
-    }
+
+// Stolen from KTH notebook
+
+/**
+ * Author: Håkan Terelius
+ * Date: 2009-08-26
+ * License: CC0
+ * Source: http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+ * Description: Prime sieve for generating all primes up to a certain limit. isprime$[i]$ is true iff $i$ is a prime.
+ * Status: Tested
+ * Time: lim=100'000'000 $\approx$ 0.8 s. Runs 30\% faster if only odd indices are stored.
+ */
+
+// Tricks:
+// - Search for primes up to 'sqrt(lim)' (because every compositve under 'lim' has
+// a prime divisor smaller than sqrt(lim))
+// - Start inner loop at i*i, since we already visited previous multiples of i
+// on earlier primes
+const int MAX_PR = 5000000;
+bitset<MAX_PR> isprime;
+vector<int> sieve(int lim) {
+	isprime.set(); isprime[0] = isprime[1] = 0;
+	for (int i = 4; i < lim; i += 2) isprime[i] = 0;
+	for (int i = 3; i*i < lim; i += 2) if (isprime[i])
+		for (int j = i*i; j < lim; j += i*2) isprime[j] = 0;
+	vector<int> pr;
+	forr(i, 2, lim) if (isprime[i]) pr.push_back(i);
+	return pr;
 }
 
 int gcd(int a, int b) {
