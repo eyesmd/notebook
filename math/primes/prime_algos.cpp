@@ -4,6 +4,18 @@
 
 using namespace std;
 
+int int_pow(int b, int e) {
+	return e ? b * int_pow(b, e-1) : 1;
+}
+
+bool is_prime(ll n) { // limit: a little les than MAX_PR^2
+    if (n < MAX_PR) return isprime[n];
+    for (int p : primes) {
+        if (n % p == 0) return false;
+        if (p * p > n) return true;
+    }
+    assert(false); return false;
+}
 
 // Stolen from KTH notebook
 
@@ -23,15 +35,14 @@ using namespace std;
 // - Start inner loop at i*i, since we already visited previous multiples of i
 // on earlier primes
 const int MAX_PR = 5000000;
+vector<int> primes;
 bitset<MAX_PR> isprime;
-vector<int> sieve(int lim) {
+void sieve() {
 	isprime.set(); isprime[0] = isprime[1] = 0;
-	for (int i = 4; i < lim; i += 2) isprime[i] = 0;
-	for (int i = 3; i*i < lim; i += 2) if (isprime[i])
-		for (int j = i*i; j < lim; j += i*2) isprime[j] = 0;
-	vector<int> pr;
-	forr(i, 2, lim) if (isprime[i]) pr.push_back(i);
-	return pr;
+	for (int i = 4; i < MAX_PR; i += 2) isprime[i] = 0;
+	for (int i = 3; i*i < MAX_PR; i += 2) if (isprime[i])
+		for (int j = i*i; j < MAX_PR; j += i*2) isprime[j] = 0;
+	forr(i, 2, MAX_PR) if (isprime[i]) primes.push_back(i);
 }
 
 int gcd(int a, int b) {
