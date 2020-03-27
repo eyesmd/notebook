@@ -35,6 +35,9 @@
 \subsection{Misc}
 
 \subsubsection*{Permutaciones}
+
+\textit{Next permutation} muta un container a la permutación inmediata superior, y retorna si quedó ordenado. El siguiente snippet utiliza dicha función para \textbf{recorrer en orden} todas las permutaciones de un arreglo/vector \textbf{ya ordenado}:
+
 \begin{lstlisting}
 vector<int> v;
 sort(v.begin(), v.end());
@@ -43,11 +46,9 @@ do {
 } while (next_permutation(v.begin(), v.end()));  #\amortizedoh{n!}#
 \end{lstlisting}
 
-Next permutation muta un container a la permutación inmediata superior. Devuelve true sii el mismo queda completamente ordenado.
+La guarda está al final para que el cuerpo del ciclo corra al menos una vez con el vector ordenado (porque la condición de corte es justamente llegar al mismo).
 
-¡Observar que para obtener todas las permutaciones debemos ordenar el arreglo antes! Además, para que el cuerpo del ciclo corra al menos una vez con el vector ordenado, debemos poner la guarda al final (porque llegar al mismo es justamente la condición de corte).
-
-Cada llamado es lineal en peor caso, pero $O(1)$ amortizado si la utilizamos para obtener todas las permutaciones. Sin embargo, la constante es \textit{probablemente} alta, debido al orden en que asegura obtenerlas.
+Cada llamado es lineal en peor caso, pero $O(1)$ amortizado si la utilizamos para obtener todas las permutaciones. Sin embargo, ciudado porque la constante es alta.
 
 \subsubsection*{Lambdas}
 \begin{lstlisting}
@@ -61,14 +62,18 @@ set<int> s( vec.begin(), vec.end() );
 vec.assign( s.begin(), s.end() );
 \end{lstlisting}
 
-\subsubsection*{Things}
-
-Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, si fallaría si le pasásemos un array de arrays).
-
-¡Para usar un \textit{unordered\_set} hace falta implementar una función de hash para pares!
+\subsubsection*{Punteros}
 
 \begin{itemize}
-    \item std::find para sets es O(n), lo que es O(log n) es std::set::find
-    \item El operador [] para maps crea un elemento si no lo encuentra, mejor usar find
+    \item Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, si fallaría si le pasásemos un array de arrays).
+    \item ¡Los punteros son considerados \textit{random-access iterators}! Esto implica que todos los algoritmos de la STL los podemos utilizar sobre arrays (por ejemplo, \textit{sort(arr, arr+n)}).
+\end{itemize}
+
+\subsubsection*{Things}
+
+\begin{itemize}
+    \item ¡Para usar un \textit{unordered\_set} hace falta implementar una función de hash para pares!
+    \item std::find para sets es O(n) porque es genérico, lo que es O(log n) es std::set::find
+    \item El operador [] para maps crea un elemento si no lo encuentra, \textit{at} en cambio tira una excepción
     \item Módulo de negativos da negativo, ojo con eso
 \end{itemize}
