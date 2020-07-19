@@ -54,6 +54,7 @@
     \algrenewcommand\algorithmicensure{\textbf{Asegura}}
 
 % MISC
+\usepackage{import}   % Recursive Import
 \usepackage{graphicx} % Images
 \usepackage{lastpage} % Reference to last page
 \usepackage{enumitem} % List control
@@ -92,7 +93,10 @@
 \newcommand*{\comment}[1]{\hfill\makebox[3.0cm][r]{#1}}%
 \newcommand*{\oh}[1]{\comment{$O(#1)$}}%
 \newcommand*{\amortizedoh}[1]{\comment{$amortized \,\, O(#1)$}}%
+\newcommand*{\cmod}{\, \% \,}%
 
+\newcommand*{\cppalgo}[1]{\comment{$amortized \,\, O(#1)$}}%
+    
 
 
 % ---------------------------------------------------
@@ -126,7 +130,7 @@
 \section{Matemática}
 \input{math/algebra/algebra.tex}
 \pagebreak
-\input{math/modular_sum/modular_sum.tex}
+\input{math/modulo/modulo.tex}
 \pagebreak
 \input{math/game_theory/game_theory.tex}
 \pagebreak
@@ -134,7 +138,7 @@
 %\pagebreak
 
 \section{Miscelaneas}
-\input{general/general.tex}
+\import{general/}{general.tex}
 \pagebreak
 
 \listoftodos[TODOs]

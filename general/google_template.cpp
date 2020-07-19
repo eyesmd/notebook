@@ -8,13 +8,13 @@ typedef pair<ll,ll> ii;
 #define forr(i,a,b) for(int i=(a); i<(b); i++)
 #define forn(i,n) forr(i,0,n)
 #define sz(v) (int)(v).size()
-#define debug(v) cerr << #v << ": " << (v) << endl;
- 
-int expi(int b, int e) {
-    if (!e) return 1;
-    int q = expi(b, e/2);
-    q = (q*q);
-    return e % 2 ? (b*q) : q;
+
+#define deb(v) cerr << #v << ": " << (v) << endl;
+#define debc(c) { cerr << #c << " " << sz(c) << endl; for(auto e : (c)) cerr << e << endl; }
+#define debl() cerr << endl;
+template <typename T, typename D>
+std::ostream& operator<<(std::ostream& os, const std::pair<T, D> &p) {
+    return os << "(" << p.first << ", " << p.second << ")";
 }
  
 int main() {
@@ -22,7 +22,7 @@ int main() {
 
     int t; cin >> t;
     forn(ti, t) {
-    	string res = "------";
-		cout << "Case #" << ti+1 << ": " << res << "\n";
+
+		cout << "Case #" << ti+1 << ": " << "..." << "\n";
     }
 }

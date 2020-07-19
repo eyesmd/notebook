@@ -1,38 +1,5 @@
-\subsection{Yapas}
 
-\subsubsection*{Funciones Grandes}
+\subimport{}{referencias.tex}
+\pagebreak
 
-\newcolumntype{Y}{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}X}
-\begin{tabularx}{0.33\textwidth}{YYYYYYYY}
-                      & $\mathbf{5}$ & $\mathbf{10}$ & $\mathbf{15}$ & $\mathbf{20}$ & $\mathbf{25}$ & $\mathbf{30}$ \\
-     $\mathbf{2^n}$            & $32$  & $10^3$    & $3*10^4$ & $10^6$   & $3*10^7$ & $10^9$ \\
-     $\mathbf{3^n}$            & $243$ & $5*10^4$  & $10^7$   & $3*10^9$ & $...$    & $...$ \\
-     $\mathbf{\binom{n}{n/2}}$ & $10$  & $252$     & $5*10^4$ & $10^5$   & $10^6$   & $10^8$ \\
-     $\mathbf{n!}$             & $120$ & $10^{12}$ & $...$    & $...$    & $...$    & $...$
-\end{tabularx}
-
-\subsubsection*{Límites}
-\begin{tabular}{ccc}
-    INT\_MAX $= 2e9$ & LLONG\_MAX $= 9e18$ & DBL\_MAX $= 1e37$
-\end{tabular}
-
-\subsubsection*{Memoria}
-\begin{tabularx}{0.1\textwidth}{YY}
-                          & \textit{ints} \\
-     $\mathbf{10^{3}}$     & $4$ \textit{KB}  \\
-     $\mathbf{10^{6}}$     & $4$ \textit{MB}  \\
-     $\mathbf{10^{9}}$     & $4$ \textit{GB}  \\
-\end{tabularx}
-
-\subsection{Estrategias}
-
-\subsubsection*{General}
-\begin{itemize}
-    \item \textbf{Simplificación:} Resolver una versión simplificada del problema. Suele ser más facil, y dar pauta de en donde se encuentra la dificultad en el problema original. También puede servir para encontrar una manera de construir la solución.
-    \item \textbf{Fuerza Bruta:} Resolver el problema de forma pavota. Está bueno para tener ya una resolución posible, para poner mejor en contexto que tan óptima tenga que ser la respuesta.
-\end{itemize}
-
-\subsubsection*{Geometria}
-\begin{itemize}
-    \item Fijar grados de libertad de ser posible (desplazamiento, rotación)
-\end{itemize}
+\subimport{}{estrategias.tex}

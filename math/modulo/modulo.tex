@@ -1,0 +1,35 @@
+
+\subsection{Aritmética modular}
+
+\subsubsection*{Propiedades}
+
+Si $a_1 \equiv b_1 \bmod m$ y $a_2 \equiv b_2 \bmod m$, entonces: 
+\begin{itemize}
+	\item $a_1 + a_2 \equiv b_1 + b_2 \mod m$
+	\item $a_1 - a_2 \equiv b_1 - b_2 \mod m$
+	\item $a_1 a_2 \equiv b_1 b_2 \mod m$
+	\item $\frac{a_1}{a_2} \equiv b_1 b_2^{-1} \mod m$ \quad (siendo $a_2$ y $m$ coprimos)
+	\item $a_1^k \equiv b_1^k \mod m$
+	\item $a^{p-2} a \equiv 1 \mod p $ \quad (p primo)
+\end{itemize}
+
+Con estas propiedades podemos justificar correctitud al aplicar módulo mientras operamos.
+
+\subsubsection*{Lemas}
+
+\begin{itemize}
+	\item Teorema de Euler: $a^{\varphi{(n)}} \equiv 1 \bmod n$
+	\item Pequeño teorema de Fermat: $a^{p-1} \equiv 1 \bmod p$ (con $p$ primo que no divide a $a$).
+\end{itemize}
+
+\subsubsection*{Potencia modular}
+
+El siguiente algoritmo calcula $a^b$ en módulo de manera eficiente:
+
+\cppfile{math/modulo/expmod.cpp}
+
+Podemos pensar que el algoritmo está recorriendo $a$ en binario y por cada $k$-esima posición con un $1$, acumulamos en el resultado $a^{2^k}$. En otras palabra, estamos calculando el resultado para las potencias de dos que conforman al número $b$, y combinando todo en nuestro resultado final.
+
+El algoritmo puede generalizarse para calcular $a \circ a \circ \dots \circ a$ con $\circ$ asociativa, y tal que el operador módulo sea distributivo con respecto a la misma.
+
+\cppfile{math/modulo/opmod.cpp}
