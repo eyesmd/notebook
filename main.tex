@@ -83,8 +83,8 @@
         framerule=0pt,
         escapechar=\#% char to escape out of listings and back to LaTeX
     }
-    \newcommand{\cppfile}[2][]{
-        \lstinputlisting[linerange={#1}]{#2}
+    \newcommand{\cppfile}[1]{
+        \lstinputlisting[language=C++]{#1}
     }
 
 % FONTS

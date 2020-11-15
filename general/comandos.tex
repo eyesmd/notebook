@@ -1,0 +1,14 @@
+
+\subsection{Comandos}
+
+\subsubsection*{Compilación}
+
+\begin{lstlisting}[language=bash]
+g++ -std=c++17 -O2 -Wconversion -Wall -Wshadow -D_GLIBCXX_DEBUG rta.cpp -o rta 
+\end{lstlisting}
+
+\subsubsection*{Límite de pila (256MB)}
+
+\begin{lstlisting}[language=bash]
+ulimit -s 262144
+\end{lstlisting}
