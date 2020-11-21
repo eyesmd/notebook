@@ -4,7 +4,7 @@ struct trie {
 
     trie(trie* p = 0) : parent(p) {}
     trie* go(const char* s) { return *s ? m.at(*s)->go(s+1) : this; }
-    void add(const char* s) { // std::string:c_str()
+    void add(const char* s) { // use with std::string:c_str()
         if (char c = *s) {
             if (!m[c]) m[c] = new trie(this);
             m[c]->add(s+1);

@@ -1,36 +1,3 @@
-\pagebreak
-
-\subsection{STL}
-
-{\centering \subsection*{Input/Forward Iterators (Generic)}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{min\_element}(first, last, [comp]) & returns iterator to the (first) minimum \\
-    \textbf{accumulate}(first, last, init, [bp]) & returns the result of sequentially applying \textit{binary} operations starting from init \\
-    \textbf{count}(first, last, val) & returns the repetitions of val (using $==$)
-\end{tabularx}
-
-{\centering \subsection*{Random Access Iterators (Arrays)}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{lower\_bound}(first, last, val, [comp]) & returns iterator to the first element greater or equal than val (higher\_bound is strict) \footnote{If the iterator is random-access, the operation on average is logarithmic, otherwise it is linear} \\
-    \textbf{sort}(first, last, [comp$<$]) & sorts elements in ascending order in $O(n \, log \, n)$
-\end{tabularx}
-
-{\centering \subsection*{Vectors}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{assign}(first, last) & fills the vector using the range given \\
-\end{tabularx}
-
-{\centering \subsection*{Sets and Maps}}
-\begin{tabularx}{\textwidth/2-20pt}{c X}
-    \textbf{lower\_bound}(val) & returns iterator to the first element greater or equal than val (higher\_bound is strict)
-\end{tabularx}
-
-\todo[inline]{generic: insert(need to specify pos in vectors), erase, clear, swap. vectors have push\_back, pop\_back. Queues have push, pop, back, front. Stacks have push, pop, top. vectors have 'front' and 'back'}
-
-\todo[inline]{partition, set\_union, set\_difference, set\_intersection, search, nth\_element(intro select, qsort, median of medians magic), is\_permutation}
-
-\pagebreak
-
 
 \subsection{Misc}
 
@@ -43,18 +10,10 @@ vector<int> v;
 sort(v.begin(), v.end());
 do {
     // code
-} while (next_permutation(v.begin(), v.end()));  #\amortizedoh{n!}#
+} while (next_permutation(v.begin(), v.end()));  #\amortizedohk{n!}#
 \end{lstlisting}
 
-La guarda está al final para que el cuerpo del ciclo corra al menos una vez con el vector ordenado (porque la condición de corte es justamente llegar al mismo).
-
-Cada llamado es lineal en peor caso, pero $O(1)$ amortizado si la utilizamos para obtener todas las permutaciones. Sin embargo, ciudado porque la constante es alta.
-
-\subsubsection*{Lambdas}
-\begin{lstlisting}
-auto f = [] (int a, int b) { return a * b; };
-std::accumulate(v.begin(), v.end(), 1, f);
-\end{lstlisting}
+La guarda está al final para que el cuerpo del ciclo corra al menos una vez con el vector ordenado (porque la condición de corte es justamente si está ordenado).
 
 \subsubsection*{Repetidos}
 \begin{lstlisting}
@@ -65,15 +24,15 @@ vec.assign( s.begin(), s.end() );
 \subsubsection*{Punteros}
 
 \begin{itemize}
-    \item Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, si fallaría si le pasásemos un array de arrays).
     \item ¡Los punteros son considerados \textit{random-access iterators}! Esto implica que todos los algoritmos de la STL los podemos utilizar sobre arrays (por ejemplo, \textit{sort(arr, arr+n)}).
+    \item Los arrays 'decaen' a punteros en casi todas sus operaciones (son excepciones \textit{sizeof} y \textit{\&}). Un ejemplo notable es cuando son pasados como argumentos de funciones, razón por la cual los programas siguen tipando, aún cuando le pasamos un array a una función que espera un puntero (obs: sin embargo, sí fallaría si pasásemos un array de arrays).
 \end{itemize}
 
-\subsubsection*{Things}
+\subsubsection*{Recordatorios}
 
 \begin{itemize}
     \item ¡Para usar un \textit{unordered\_set} hace falta implementar una función de hash para pares!
-    \item std::find para sets es O(n) porque es genérico, lo que es O(log n) es std::set::find
+    \item \textit{std::find} para sets es O(n) porque es genérico, lo que es O(log n) es \textit{std::set::find}
     \item El operador [] para maps crea un elemento si no lo encuentra, \textit{at} en cambio tira una excepción
-    \item Módulo de negativos da negativo, ojo con eso
+    \item ¡El operador módulo devuelve negativos!
 \end{itemize}

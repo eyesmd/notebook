@@ -9,6 +9,7 @@ typedef pair<ll,ll> ii;
 #define forn(i,n) forr(i,0,n)
 #define fore(e,c) for (auto& e: c)
 #define sz(v) (int)(v).size()
+#define all(c) (c).begin, (c).end
 
 #define deb(v) cerr << #v << ": " << (v) << endl;
 #define debc(c) { cerr << #c << " " << sz(c) << endl; for(auto e : (c)) cerr << e << endl; }

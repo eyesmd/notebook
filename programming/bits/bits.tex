@@ -31,6 +31,6 @@
 \subsubsection*{Comentarios}
 \begin{itemize}
 	\item Los operadores \& y | tienen menor precedencia que los operadores de comparación, con lo cual \lstinline{x & 3 == 1} se interpreta como \lstinline{x & (3 == 1)}. ¡Ojo con eso!
-	\item Los operadores \textit{builtin} tienen versiones para \lstinline{long} y \lstinline{long long}, (\lstinline{__builtin_clzll(n)}) ¡Cuidado con pasarles el tipo incorrecto!
-	\item Los operadores de bits no están completamente definidos sobre enteros con signo. Para código portable y bien escrito, es mejor utilizar tipos sin signo. Dicho eso, en los jueces no explota nada si utilizamos ints. El único cuidado especial es realizar shifts sobre números negativos, por resultar en \textit{undefined behaviour}, que se puede evitar dejando en $0$ el bit más significativo.
+	\item Los operadores \textit{builtin} tienen versiones para \lstinline{long} y \lstinline{long long}, (\lstinline{__builtin_clzll(n)})
+	\item Los operadores de bits no están completamente definidos sobre enteros con signo. Para código portable y bien escrito, es mejor utilizar tipos sin signo. Dicho eso, en los jueces no explota nada si utilizamos ints. El único cuidado especial es realizar shifts sobre números negativos, que es \textit{undefined behaviour}, lo que podemos evitar dejando en $0$ el bit más significativo.
 \end{itemize}
