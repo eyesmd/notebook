@@ -58,11 +58,14 @@
 \usepackage{graphicx} % Images
 \usepackage{lastpage} % Reference to last page
 \usepackage{enumitem} % List control
+\PassOptionsToPackage{usenames,dvipsnames}{xcolor}
 \usepackage[draft]{todonotes} % Todo's
+\newcommand\myshade{75}
+% violet, YellowOrange, Aquamarine, OliveGreen, RubineRed
 \usepackage{hyperref} % Hyperlinks
     \hypersetup{
         colorlinks = true,
-        urlcolor = blue,
+        urlcolor = OliveGreen!\myshade!black,
         linkcolor = red,
         citecolor = red
     }
@@ -97,6 +100,7 @@
 \newcommand*{\cmod}{\, \% \,}%
 
 \newcommand*{\cppalgo}[1]{\comment{$amortized \,\, O(#1)$}}%
+\newcommand*{\impls}[1]{\begin{flushright} \vspace{-24pt} \texttt{#1} \end{flushright}}
     
 
 
@@ -141,7 +145,5 @@
 \section{Miscelaneas}
 \import{general/}{general.tex}
 \pagebreak
-
-\listoftodos[TODOs]
 
 \end{document}

@@ -1,6 +1,26 @@
 
 \subsection{Misc}
 
+\subsubsection*{Input}
+
+\begin{lstlisting}
+getline(cin, s); // reads line from input into 's'
+\end{lstlisting}
+
+\subsubsection*{Strings}
+
+\begin{lstlisting}
+s.substr(i, len); // returns s[i..i+len], or s[i..] if i+len >= sz(s)
+\end{lstlisting}
+
+\subsubsection*{Containers}
+
+\begin{lstlisting}
+vector<int> v( all(c) );
+set<int> s( all(c) );
+\end{lstlisting}
+
+
 \subsubsection*{Permutaciones}
 
 \textit{Next permutation} muta un container a la permutación inmediata superior, y retorna si quedó ordenado. El siguiente snippet utiliza dicha función para \textbf{recorrer en orden} todas las permutaciones de un arreglo/vector \textbf{ya ordenado}:

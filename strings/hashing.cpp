@@ -9,34 +9,31 @@ struct Hash {
     static const int MA = 1e9+7, MB = 1e9+9;
     Mod<MA> a; Mod<MB> b;
     Hash() : a(0), b(0) {}
-    Hash(ll aa) : a(aa), b(aa) {}
-    Hash(ll aa, ll bb) : a(aa), b(bb) {}
     Hash(Mod<MA> aa, Mod<MB> bb) : a(aa.x), b(bb.x) { }
+    static Hash ch(char c) { return Hash(c - 'a' + 1, c - 'a' + 1); }
     Hash operator+(Hash o) { return Hash( a + o.a, b + o.b ); }
     Hash operator-(Hash o) { return Hash( a - o.a, b - o.b ); }
     Hash operator*(Hash o) { return Hash( a * o.a, b * o.b ); }
     Hash operator^(ll e) { return Hash( a ^ e, b ^ e ); }
+    Hash invert() { return Hash( a.invert(), b.invert() ); } // expensive!
+    bool operator==(const Hash& o) const { return a == o.a && b == o.b; }
     bool operator<(const Hash& o) const { return a < o.a || (a == o.a && b < o.b); }
 };
+
 print_with( Hash, make_pair(x.a, x.b) );
 
-
-Hash P = Hash(31, 53);
-
-Hash PS[MAXM];
+const int MAXM = ...; // completar y llamar a 'init_ps()'
+Hash P[MAXM];
 void init_ps() {
-	PS[0] = Hash(1);
-	forr(i, 1, MAXM) PS[i] = PS[i-1] * P;
-}
-
-Hash put(Hash h, string& s, int i) {
-	return h + Hash(s[i] - 'a' + 1) * PS[i];
-}
-
-Hash put_back(Hash h, char c) {
-	return Hash(c - 'a' + 1) + h * P;
+    P[0] = Hash(1, 1);
+    forr(i, 1, MAXM) P[i] = P[i-1] * Hash(31, 53);
 }
 
 Hash hsh(string& s) {
-	h = Hash(0); forn(i, n) h = put(h, s, i); return h;
+    Hash h = Hash(0, 0);
+    forn(i, sz(s)) h = h + Hash::ch(s[i]) * P[i];
+    return h;
 }
+
+// push_last:  h + Hash::ch(c) * P[sz(s)-1];
+// push_first: Hash::ch(c) + (h * P[1]);

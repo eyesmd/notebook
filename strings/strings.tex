@@ -1,50 +1,48 @@
 
 \subsection{Trie}
 
-\lstinputlisting[language=C++]{strings/trie.cpp}
+\impls{\href{https://github.com/eyesmd/wonderbook/blob/master/strings/trie.cpp}{Wonder}}
 
-\subsection{Bordes}
+\subsection{Hashing}
+
+\impls{\href{https://github.com/eyesmd/wonderbook/blob/master/strings/hashing.cpp}{Wonder} | \href{https://github.com/kth-competitive-programming/kactl/blob/master/content/strings/Hashing.h}{Kth} | \href{https://github.com/e-maxx-eng/e-maxx-eng/blob/48d3922a64c4b9268beb3acf30ee294f7bfefbce/src/string/string-hashing.md}{CPA} }
+
+Dado un hash polinomial:
+
+\begin{equation*}
+h(s) = \sum_{i=0}^n s_i \, p^i
+\end{equation*}
+
+\begin{itemize}
+  \item El hash al agregar un caracter al final es $h(s + c) = h(s) + c * p^{|s|}$
+  \item El hash al agregar un caracter al principio es $h(c + s) = c + h(s) * p$
+  \item El hash al quitar caracteres se puede calcular despejando $h(s)$
+\end{itemize}
+
+
+\subsection{KMP}
+
+\impls{\href{https://github.com/JonSeijo/jonnotebook/blob/master/codigo/string/kmp.cpp}{Jonno} | \href{https://github.com/kth-competitive-programming/kactl/blob/89fd4e30dcd9e19d3723bd34e74cd46be3fa87c4/content/strings/KMP.h}{Kth}}
 
 Un \textit{borde} es un substring \textbf{estricto} que es prefijo y sufijo a la vez.
 
-La aplicación será vista más tarde. A continuación se encuentra el desarrollo que nos va a permitir calcular bordes eficientemente.
-
 Para todo string $s$ y borde no trivial $b$, $b[1..n)$ es borde de $s[1..n)$. Luego, existe algun borde de $s[1..n)$ que puede extenderse a $b$. Por contrarecíproco, si no existe ninguno, $b$ no es borde de $s$.
 
-\todo[inline]{¿Cuándo es que un borde no máximo puede extenderse a borde del siguiente?}
-
-\textbf{Ejemplos:}
-
-\begin{tabular}{ccccccccccc}
-    a & b & r & a & c & a & d & a & b & r & a \\
-    0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 2 & 2 & 3
-\end{tabular}
+\textbf{Ejemplo:}
 
 \begin{tabular}{ccccccccc}
     b & a & d & d & b & a & d & b & a \\
     0 & 0 & 0 & 0 & 1 & 2 & 3 & 1 & 2
 \end{tabular}
  
-Esto da la pauta de como conseguir todos los bordes de $s$ con DP, iterando sobre los bordes de $s[1..n)$ y verificando si pueden extenderse o no. Sin embargo, para cada prefijo tendría que calcular todos los bordes, y tendriamos que guardar $\mathds{O}(n^2)$ bordes. Necesitamos una mejor forma de codificar nuestra información. Para esto vamos a aprovechar la relación que tienen los bordes de un string:
+Por ende, podemos conseguir todos los bordes de $s$ de manera recursiva iterando sobre los bordes de $s[1..n)$.
+
+Además, vale lo siguiente:
 
 \begin{lema}
-    Si A es borde de B y B es borde de C, entonces A es borde de C.
+    Sea M el borde máximo de S. Entonces, para todo P distinto de S, P borde de S si y solo si P borde de M.
 \end{lema}
 
-\begin{lema}
-    Dado un par de bordes de C, el menor es borde del mayor.
-\end{lema}
-
-\begin{corolario}
-    Si $|A| < |B|$ y B es borde de C, entonces A borde de B si y solo si A borde de C
-\end{corolario}
-
-\begin{corolario}
-    Si M es el borde máximo de S, entonces para todo P distinto de S, P borde de S si y solo si P borde de M
-\end{corolario}
+Entonces, para calcular todos los bordes de un string basta con calcular el máximo borde de todos sus prefijos. Con esta info, todos los bordes de un string $s$ serían $mb[mb[...[mb[s]]...]]$.
 
 \textbf{Ejemplo:} \textbf{malu\textit{ma}}\textit{luma} $\to$ \textbf{ma}lu\textit{ma} $\to$ ma
-
-Lo que conseguimos con esto es darnos cuenta de que para calcular todos los bordes de un string basta con calcular el máximo borde de todos sus prefijos. Calculando un array con esta información, todos los bordes de un string $s$ serían $mb[mb[...[mb[|s|]]...]]$.
-
-\todo[inline]{I mean, is that all there is?}
