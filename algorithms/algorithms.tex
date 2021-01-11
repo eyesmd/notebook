@@ -49,13 +49,16 @@ La pregunta clave es, dado un nodo en el arbol de recursión, ¿qué informació
 
 \subsubsection*{Guía}
 
-Un approach metódico para diseñar un algoritmo de programación dinámica es el siguiente:
+Una serie de preguntas disparadores para diseñar un algoritmo de programación dinámica es la siguiente:
 
 \begin{enumerate}
-    \item Dar un backtracking (decisiones a tomar para obtener toda solución posible)
-    \item ¿Puedo armar un algoritmo de optimización recursivo?
-    \item ¿Qué información realmente necesito para resolver un sub-problema? (nuevo sub-problema)
-    \item ¿Qué cantidad de sub-problemas me quedan?
+    \item ¿Qué serie de decisiones tomar para obtener cualquier solución posible? (backtracking)
+    \item Dado que ya tomé una serie de decisiones, ¿qué necesito saber para resolver el sub-problema que me queda a partir de ahí? (DP)
+    \item ¿Qué cantidad de sub-problemas me quedarían? (complejidad)
 \end{enumerate}
 
+Además, antes de programar es conveniente escribir en papel la \textit{función recursiva} (sub-estructura óptima).
 
+Si tengo problemas armandolá, algo interesante sería chequear en aislamiento la propiedad de subestructura óptima, preguntandonós: Si tengo el óptimo luego de haber tomado X decisión, ¿cómo transformo eso en una solución a mi problema original?
+
+Una vez hecha, calcular la complejidad total teniendo en cuenta la complejidad de resolver cada nodo.
