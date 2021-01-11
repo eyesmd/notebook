@@ -7,6 +7,12 @@
 g++ -std=c++17 -O2 -Wconversion -Wall -Wshadow -D_GLIBCXX_DEBUG rta.cpp -o rta 
 \end{lstlisting}
 
+\subsubsection*{Testing}
+
+\begin{lstlisting}[language=bash]
+for f in in* ; do echo $f; ./rta < $f ; echo ""; done
+\end{lstlisting}
+
 \subsubsection*{Límite de pila (256MB)}
 
 \begin{lstlisting}[language=bash]

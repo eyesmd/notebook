@@ -11,9 +11,9 @@ typedef pair<ll,ll> ii;
 #define sz(v) (int)(v).size()
 #define all(c) (c).begin(), (c).end()
 
-#define deb(v) cerr << #v << ": " << (v) << endl;
-#define debc(c) { cerr << #c << " " << sz(c) << endl; for(auto e : (c)) cerr << e << endl; }
-#define debl() cerr << endl;
+#define deb(v) cout << #v << ": " << (v) << endl;
+#define debc(c) { cout << #c << " " << sz(c) << endl; for(auto e : (c)) cout << e << endl; }
+#define debl() cout << endl;
 #define print_with(t, s) std::ostream& operator<<(std::ostream& os, const t &x) { return os << s; }
 template <typename T, typename D>
 std::ostream& operator<<(std::ostream& os, const std::pair<T, D> &p) {

@@ -20,6 +20,16 @@ vector<int> v( all(c) );
 set<int> s( all(c) );
 \end{lstlisting}
 
+\subsubsection*{Pseudo-structs}
+
+La gracia es ya tener definido operadores de comparación (y de print usando defines).
+\begin{lstlisting}
+typedef tuple<ll, ll, ll> node;
+define DAY(node) get<0>(node)
+define LEFT(node) get<1>(node)
+define HOTEL(node) get<2>(node)
+print_with(node, "(" << DAY(x) << ", " << LEFT(x) << ", " << HOTEL(x) << ")");
+\end{lstlisting}
 
 \subsubsection*{Permutaciones}
 

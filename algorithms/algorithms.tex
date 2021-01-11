@@ -1,0 +1,61 @@
+
+\subsection{Programación Dinámica}
+
+\subsubsection*{Backtracking}
+
+Un algoritmo de \textit{backtracking} explora recursivamente el espacio de soluciones de un problema. Cada nodo del arbol de recursion representa una \textit{solución parcial}, y sus hijos son extensiones de la misma. Las hojas del arbol son entonces las soluciones al problema, y el óptimo de una de ellas.
+
+\begin{lstlisting}[language=python]
+opt_sol = nil
+cur_sol = []
+def bt():
+    if is_complete(cur_sol):
+        opt_sol = keep_better(cur_sol, opt_sol)
+        return
+    for ext in extensions(cur_sol):
+        cur_sol += ext
+        bt()
+        cur_sol -= ext
+\end{lstlisting}
+
+\subsubsection*{Subestructura óptima}
+
+Si podemos expresar la solución a un problema recursivamente sobre algún sub-problema, decimos que el problema tiene subestructura óptima. El motivo es que dar una recursión implica poder obtener el óptimo del sub-problema a partir del óptimo de sub-problemas.
+
+\begin{equation}
+f(p) = g(sp) = \max_{sp' \in Children(sp)} h(g(sp'))
+\end{equation}
+
+$h$ sería la función que calcula la solución optima siguiendo una cierta arista saliente de $sp$.
+
+\begin{lstlisting}[language=python]
+def rec(sp):
+    if is_base_subproblem(sp):
+        return base_solution(sp)
+    opt_sol = id
+    for csp in sp:
+        sol = h(rec(csp))
+        opt_sol = keep_better(opt_sol, sol)
+    return opt_sol
+\end{lstlisting}
+
+Un algoritmo recursivo podemos pensarlo como un backtracking. La solución parcial que vamos construyendo está dada por la lista de decisiones que nos llevaron al sub-problema actual (o sea, las aristas hasta el nodo donde estamos).
+
+\subsubsection*{Programación Dinámica}
+
+Dado un algoritmo recursivo podemos diseñar un algoritmo más eficiente de \textit{programación dinámica}.
+
+La pregunta clave es, dado un nodo en el arbol de recursión, ¿qué información realmente necesito para resolver el sub-problema? Si la información es menos que la infomación completa del camino hacia el nodo, entonces potencialmente tenemos nodos que son equivalentes en el arbol de recursión. Un algoritmo de programación dinámica es hacer recursión memoizando los óptimos de cada nodo, y re-utilizando dicho resultado cuando necesitamos resolver cualquier nodo equivalente.
+
+\subsubsection*{Guía}
+
+Un approach metódico para diseñar un algoritmo de programación dinámica es el siguiente:
+
+\begin{enumerate}
+    \item Dar un backtracking (decisiones a tomar para obtener toda solución posible)
+    \item ¿Puedo armar un algoritmo de optimización recursivo?
+    \item ¿Qué información realmente necesito para resolver un sub-problema? (nuevo sub-problema)
+    \item ¿Qué cantidad de sub-problemas me quedan?
+\end{enumerate}
+
+
